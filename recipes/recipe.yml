@@ -23,10 +23,7 @@ modules:
     install:
       - micro
       - starship
-    remove:
-      # removed firefox and its langpacks
-      - firefox
-      - firefox-langpacks
+    remove: []
 
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)
