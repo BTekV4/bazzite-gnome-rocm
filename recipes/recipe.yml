@@ -37,11 +37,11 @@ modules:
 
   - type: rpm-ostree
     install:
-      - kernel-6.13.7-108.bazzite.fc42.x86_64
-      - kernel-core-6.13.7-108.bazzite.fc42.x86_64
-      - kernel-modules-6.13.7-108.bazzite.fc42.x86_64
-      - kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64
-      - kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64
+      - /tmp/system/usr/local/rpms/kernel-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - /tmp/system/usr/local/rpms/kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - /tmp/system/usr/local/rpms/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - /tmp/system/usr/local/rpms/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - /tmp/system/usr/local/rpms/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
     remove:
       # Removed unnecessary modules for ROCm support
       - kmod-bmi260
