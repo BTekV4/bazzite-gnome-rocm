@@ -17,14 +17,6 @@ modules:
       - source: system
         destination: /tmp/system  # Cambiato per evitare conflitti con il percorso esistente
 
-  - type: rpm-ostree
-    repos:
-      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
-    install:
-      - micro
-      - starship
-    remove: []
-
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)
     system:
@@ -75,7 +67,7 @@ modules:
       - kernel-modules-extra
       - kernel-devel
       - kernel
-      
+
   - type: rpm-ostree
     install:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm
