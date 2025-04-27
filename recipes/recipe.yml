@@ -69,7 +69,13 @@ modules:
       - kmod-xone
       - zenergy
       - kmod-zenergy
-
+      - kernel-core
+      - kernel-modules-core
+      - kernel-modules
+      - kernel-modules-extra
+      - kernel-devel
+      - kernel
+      
   - type: rpm-ostree
     install:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm
