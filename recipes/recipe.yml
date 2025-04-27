@@ -35,14 +35,13 @@ modules:
         - org.gnome.eog
     user: {} # Also add Flathub user repo, but no user packages
 
-- type: rpm-ostree
-  install:
-    - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-6.13.7-108.bazzite.fc42.x86_64.rpm
-    - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm
-    - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
-    - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
-    - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
-    
+  - type: rpm-ostree
+    install:
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
     remove:
       # Removed unnecessary modules for ROCm support
       - kmod-bmi260
