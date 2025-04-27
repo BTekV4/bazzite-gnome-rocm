@@ -45,3 +45,17 @@ modules:
       - kernel-modules-6.13.7-108.bazzite.fc42.x86_64
       - kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64
       - kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64
+    remove:
+      # Removed unnecessary modules for ROCm support
+      - kmod-bmi260
+      - kmod-gpd-fan
+      - kmod-ayaneo-platform
+      - kmod-openrazer
+      - kmod-v4l2loopback
+      - kmod-wl
+      - kmod-kvmfr
+      - kmod-nct6687d
+      - kmod-ryzen-smu
+      - kmod-vhba
+      - kmod-xone
+      - kmod-zenergy
