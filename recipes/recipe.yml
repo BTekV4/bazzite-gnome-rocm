@@ -38,21 +38,42 @@ modules:
   - type: rpm-ostree
     remove:
       # Removed unnecessary modules for ROCm support
+      - bmi260
       - kmod-bmi260
+      - broadcom-wl
+      - kmod-broadcom-wl
+      - gpd-fan
       - kmod-gpd-fan
+      - kernel-devel-matched
       - kmod-ayaneo-platform
+      - ayaneo-platform
+      - kmod-ayn-platform
+      - ayn-platform
+      - kmod-framework-laptop
+      - framework-laptop-kmod-common
+      - kmod-gcadapter_oc
+      - gcadapter_oc
       - kmod-openrazer
+      - openrazer-kmod-common
       - kmod-v4l2loopback
       - kmod-wl
+      - kvmfr
       - kmod-kvmfr
+      - nct6687d
       - kmod-nct6687d
+      - ryzen-smu
       - kmod-ryzen-smu
+      - v4l2loopback
       - kmod-vhba
+      - vhba
+      - xone-kmod-common
       - kmod-xone
+      - zenergy
       - kmod-zenergy
 
   - type: rpm-ostree
     install:
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
