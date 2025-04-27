@@ -40,7 +40,6 @@ modules:
       # Removed unnecessary modules for ROCm support
       - bmi260
       - kmod-bmi260
-      - kmod-broadcom-wl
       - gpd-fan
       - kmod-gpd-fan
       - kernel-devel-matched
