@@ -1,6 +1,6 @@
 # bazzite-gnome-rocm
 
-This repository contains a custom Fedora-based image built for supporting ROCm (Radeon Open Compute) stack on AMD GPUs. This version is tailored for users needing specific kernel modifications and dependencies for GPU compute workloads. The image is based on the Bazzite GNOME distribution, with an upgraded kernel and other necessary configurations for ROCm compatibility.
+This repository contains a custom Fedora-based image built for supporting ROCm (Radeon Open Compute) stack on AMD GPUs. This version is tailored for users needing specific kernel version and dependencies for GPU compute workloads. The image is based on the Bazzite GNOME distribution, with an downgraded kernel and other necessary configurations for ROCm compatibility.
 
 ## Installation
 
