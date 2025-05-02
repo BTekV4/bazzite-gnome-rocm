@@ -72,7 +72,7 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
 
   - type: copy
-    from: ghcr.io/ublue-os/akmods-extra:6.13.7-108.bazzite.fc42.x86_64
+    from: https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/os/Packages/a/akmods-extra-1.0-3.fc41.x86_64.rpm
     src: /rpms/
     dest: /tmp/rpms
 
