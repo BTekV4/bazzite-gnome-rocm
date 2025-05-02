@@ -7,26 +7,19 @@ base-image: ghcr.io/ublue-os/bazzite-gnome
 image-version: latest
 
 modules:
-  # Aggiungi il repository di akmods
+  # Installa akmods, abilita il repo, installa moduli compatibili e compila per kernel 6.13.7
   - type: containerfile
     snippets:
       - RUN curl -fsSL https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-%OS_VERSION%/ublue-os-akmods.repo -o /etc/yum.repos.d/_copr_ublue-os-akmods.repo
-      - RUN dnf install -y akmods
-
-  # Modifica per abilitare il repository di akmods
-  - type: containerfile
-    snippets:
       - RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
+      - RUN dnf install -y akmods
+      - RUN rpm-ostree install /tmp/rpms/kmods/*nct6687*.rpm
+      - RUN akmods --kernel 6.13.7-108
 
   # Verifica che i pacchetti RPM siano stati copiati correttamente
   - type: containerfile
     snippets:
       - RUN find /tmp/rpms
-
-  # Installa i pacchetti RPM necessari da /tmp/rpms (moduli compatibili con il kernel)
-  - type: containerfile
-    snippets:
-      - RUN rpm-ostree install /tmp/rpms/kmods/*nct6687*.rpm
 
   # Rimozione dei moduli non necessari per ROCm
   - type: rpm-ostree
@@ -78,8 +71,3 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
-
-  # Installa i moduli compatibili con il kernel utilizzando akmods
-  - type: containerfile
-    snippets:
-      - RUN akmods --kernel 6.13.7-108
