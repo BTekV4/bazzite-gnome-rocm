@@ -1,35 +1,29 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: bazzite-gnome-rocm
-# description will be included in the image's metadata
 description: This is my personal OS image with kernel downgraded for ROCm support.
 
-# the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-gnome
-image-version: latest # latest is also supported if you want new updates ASAP
+image-version: latest
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
   - type: files
     files:
       - source: system
-        destination: /tmp/system  # Cambiato per evitare conflitti con il percorso esistente
+        destination: /tmp/system
 
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
+    notify: true
     system:
       install:
-        - com.brave.Browser # Brave added
+        - com.brave.Browser
         - org.gnome.Loupe
       remove:
         - org.gnome.eog
-    user: {} # Also add Flathub user repo, but no user packages
+    user: {}
 
   - type: rpm-ostree
     remove:
-      # Removed unnecessary modules for ROCm support
       - bmi260
       - kmod-bmi260
       - broadcom-wl
@@ -76,3 +70,29 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
+
+  - type: copy
+    from: ghcr.io/ublue-os/akmods-extra:6.13.7-108.bazzite.fc42.x86_64
+    src: /rpms/
+    dest: /tmp/rpms
+
+  - type: containerfile
+    snippets:
+      - RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
+      - RUN find /tmp/rpms
+      - RUN rpm-ostree install \
+          /tmp/rpms/kmods/*nct6687*.rpm \
+          /tmp/rpms/kmods/*xone*.rpm \
+          /tmp/rpms/kmods/*zenergy*.rpm \
+          /tmp/rpms/kmods/*v4l2loopback*.rpm \
+          /tmp/rpms/kmods/*vhba*.rpm \
+          /tmp/rpms/kmods/*ryzen-smu*.rpm \
+          /tmp/rpms/kmods/*openrazer*.rpm \
+          /tmp/rpms/kmods/*gcadapter_oc*.rpm \
+          /tmp/rpms/kmods/*framework-laptop*.rpm \
+          /tmp/rpms/kmods/*ayn-platform*.rpm \
+          /tmp/rpms/kmods/*ayaneo-platform*.rpm \
+          /tmp/rpms/kmods/*gpd-fan*.rpm \
+          /tmp/rpms/kmods/*wl*.rpm \
+          /tmp/rpms/kmods/*bmi260*.rpm \
+          /tmp/rpms/kmods/*kvmfr*.rpm
