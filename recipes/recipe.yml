@@ -79,7 +79,7 @@ modules:
   - type: containerfile
     snippets:
       - RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
-      - RUN find /tmp/rpms
+      - RUN curl -L -o /tmp/rpms/akmods-extra-1.0-3.fc41.x86_64.rpm https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/os/Packages/a/akmods-extra-1.0-3.fc41.x86_64.rpm
       - RUN rpm-ostree install \
           /tmp/rpms/kmods/*nct6687*.rpm \
           /tmp/rpms/kmods/*xone*.rpm \
