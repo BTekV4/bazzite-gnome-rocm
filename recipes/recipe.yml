@@ -1,28 +1,35 @@
+---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
 name: bazzite-gnome-rocm
+# description will be included in the image's metadata
 description: This is my personal OS image with kernel downgraded for ROCm support.
 
+# the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-gnome
-image-version: latest
+image-version: latest # latest is also supported if you want new updates ASAP
 
+# module configuration, executed in order
+# you can include multiple instances of the same module
 modules:
   - type: files
     files:
       - source: system
-        destination: /tmp/system
+        destination: /tmp/system  # Cambiato per evitare conflitti con il percorso esistente
 
   - type: default-flatpaks
-    notify: true
+    notify: true # Send notification after install/uninstall is finished (true/false)
     system:
       install:
-        - com.brave.Browser
+        - com.brave.Browser # Brave added
         - org.gnome.Loupe
       remove:
         - org.gnome.eog
-    user: {}
+    user: {} # Also add Flathub user repo, but no user packages
 
   - type: rpm-ostree
     remove:
+      # Removed unnecessary modules for ROCm support
       - bmi260
       - kmod-bmi260
       - broadcom-wl
@@ -69,11 +76,3 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
-
-  - type: containerfile
-    snippets:
-      - RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
-      - RUN curl -L -o /tmp/rpms/akmods-extra-1.0-3.fc41.x86_64.rpm https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/os/Packages/a/akmods-extra-1.0-3.fc41.x86_64.rpm
-      - RUN rpm-ostree install \
-          /tmp/rpms/*kernel*.rpm \
-          /tmp/rpms/*akmods-extra*.rpm
