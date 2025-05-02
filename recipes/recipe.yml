@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: bazzite-gnome-rocm
 description: This is my personal OS image with kernel downgraded for ROCm support.
@@ -71,28 +70,10 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
 
-  - type: copy
-    from: https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/os/Packages/a/akmods-extra-1.0-3.fc41.x86_64.rpm
-    src: /rpms/
-    dest: /tmp/rpms
-
   - type: containerfile
     snippets:
       - RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
       - RUN curl -L -o /tmp/rpms/akmods-extra-1.0-3.fc41.x86_64.rpm https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/os/Packages/a/akmods-extra-1.0-3.fc41.x86_64.rpm
       - RUN rpm-ostree install \
-          /tmp/rpms/kmods/*nct6687*.rpm \
-          /tmp/rpms/kmods/*xone*.rpm \
-          /tmp/rpms/kmods/*zenergy*.rpm \
-          /tmp/rpms/kmods/*v4l2loopback*.rpm \
-          /tmp/rpms/kmods/*vhba*.rpm \
-          /tmp/rpms/kmods/*ryzen-smu*.rpm \
-          /tmp/rpms/kmods/*openrazer*.rpm \
-          /tmp/rpms/kmods/*gcadapter_oc*.rpm \
-          /tmp/rpms/kmods/*framework-laptop*.rpm \
-          /tmp/rpms/kmods/*ayn-platform*.rpm \
-          /tmp/rpms/kmods/*ayaneo-platform*.rpm \
-          /tmp/rpms/kmods/*gpd-fan*.rpm \
-          /tmp/rpms/kmods/*wl*.rpm \
-          /tmp/rpms/kmods/*bmi260*.rpm \
-          /tmp/rpms/kmods/*kvmfr*.rpm
+          /tmp/rpms/*kernel*.rpm \
+          /tmp/rpms/*akmods-extra*.rpm
