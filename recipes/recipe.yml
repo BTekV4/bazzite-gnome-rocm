@@ -7,19 +7,6 @@ base-image: ghcr.io/ublue-os/bazzite-gnome
 image-version: latest
 
 modules:
-  # Installa akmods, abilita il repo, installa moduli compatibili e compila per kernel 6.13.7
-  - type: containerfile
-    snippets:
-      - RUN curl -fsSL https://copr.fedorainfracloud.org/coprs/ublue-os/akmods/repo/fedora-%OS_VERSION%/ublue-os-akmods.repo -o /etc/yum.repos.d/_copr_ublue-os-akmods.repo
-      - RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/_copr_ublue-os-akmods.repo
-      - RUN dnf install -y akmods
-      - RUN rpm-ostree install /tmp/rpms/kmods/*nct6687*.rpm
-      - RUN akmods --kernel 6.13.7-108
-
-  # Verifica che i pacchetti RPM siano stati copiati correttamente
-  - type: containerfile
-    snippets:
-      - RUN find /tmp/rpms
 
   # Rimozione dei moduli non necessari per ROCm
   - type: rpm-ostree
