@@ -60,3 +60,7 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
       - rpm-build
       - rpmdevtools
+
+  # Esecuzione dello script per installare Warp
+  - type: script
+    path: live/install_warp.sh
