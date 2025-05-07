@@ -8,6 +8,7 @@ image-version: latest
 modules:
   - type: rpm-ostree
     remove:
+      # Tutti i moduli non necessari
       - ayn-platform
       - broadcom-wl
       - bmi260
@@ -46,9 +47,9 @@ modules:
 
   - type: rpm-ostree
     install:
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
@@ -60,4 +61,3 @@ modules:
     source: local
     buildscript: |
       ./live/install_warp.sh
-
