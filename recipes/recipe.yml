@@ -10,6 +10,7 @@ modules:
     remove:
       # Tutti i moduli non necessari
       - ayn-platform
+      - ayaneo-platform-kmod
       - broadcom-wl
       - bmi260
       - framework-laptop-kmod-common
