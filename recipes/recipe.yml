@@ -55,8 +55,9 @@ modules:
       - rpm-build
       - rpmdevtools
 
-  - type: script
-    commands:
-      - ./live/install_warp.sh
-
+  - type: custom
+    name: install-warp
+    source: local
+    buildscript: |
+      ./live/install_warp.sh
 
