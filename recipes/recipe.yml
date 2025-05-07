@@ -25,6 +25,7 @@ modules:
       - kmod-kvmfr
       - kmod-nct6687d
       - kmod-openrazer
+      - kmod-ryzen-smu
       - kmod-v4l2loopback
       - kmod-vhba
       - kmod-wl
