@@ -57,11 +57,7 @@ modules:
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
       - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - https://releases.warp.dev/stable/v0.2025.04.30.08.11.stable_01/warp-terminal-v0.2025.04.30.08.11.stable_01-1.x86_64.rpm
       - rpm-build
       - rpmdevtools
 
-  - type: custom
-    name: install-warp
-    source: local
-    buildscript: |
-      ./live/install_warp.sh
