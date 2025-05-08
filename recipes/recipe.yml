@@ -65,6 +65,7 @@ modules:
       - make
       - git
       - obs-studio
+      - flatpak-xdg-utils
 
   # Script to compile and install v4l2loopback during build
   - type: script
