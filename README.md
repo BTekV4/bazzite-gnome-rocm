@@ -113,6 +113,7 @@ This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 
 - Set up v4l2loopback compilation during image build
 - Translated all comments in scripts and configuration files to English
+- Added Obs Studio
 
 ## ISO Creation
 
