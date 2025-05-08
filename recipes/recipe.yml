@@ -64,6 +64,7 @@ modules:
       - gcc
       - make
       - git
+      - obs-studio
 
   # Script to compile and install v4l2loopback during build
   - type: script
