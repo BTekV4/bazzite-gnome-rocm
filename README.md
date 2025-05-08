@@ -1,60 +1,69 @@
-# bazzite-gnome-rocm
+# Bazzite GNOME ROCm
 
-This repository contains a custom Fedora-based image built for supporting ROCm (Radeon Open Compute) stack on AMD GPUs. This version is tailored for users needing specific kernel version and dependencies for GPU compute workloads. The image is based on the Bazzite GNOME distribution, with an downgraded kernel and other necessary configurations for ROCm compatibility.
+This project creates a customized Bazzite GNOME image with a downgraded kernel (6.13.7-107) to support ROCm on AMD hardware.
+
+## Contents
+
+- `recipes/recipe.yml`: The BlueBuild recipe to create the customized image
+- `build_modules.sh`: Script used during build to compile the v4l2loopback kernel module
+- `files/scripts/build_modules.sh`: Copy of the build script used during image creation
+
+## Image Preparation
+
+The image can be built using BlueBuild:
+
+```bash
+bluebuild build
+```
+
+This will create a local container image `localhost/bazzite-gnome-rocm:latest` that includes:
+- Downgraded kernel to 6.13.7-107 (ROCm compatible)
+- Pre-compiled v4l2loopback module
+- Build tools needed for kernel modules
 
 ## Installation
 
-> **Warning**  
-> This is an experimental image. Use at your own risk.
+To install the image, use the following command:
 
-To rebase an existing Fedora Atomic installation to this custom build:
+```bash
+sudo rpm-ostree rebase ostree-unverified-registry:localhost/bazzite-gnome-rocm:latest
+```
 
-1. Rebase to the unsigned image first to install proper signing keys and policies:
+After reboot, you'll have a version of Bazzite with the ROCm-compatible kernel.
 
-   ```bash
-   rpm-ostree rebase ostree-unverified-registry:ghcr.io/btekv4/bazzite-gnome-rocm:latest
-   ```
+## Verifying it works
 
-2. Reboot your system:
+### Kernel verification
+To verify the system is using the correct kernel:
+```bash
+uname -r
+```
+You should see `6.13.7-107.bazzite.fc42.x86_64`.
 
-   ```bash
-   systemctl reboot
-   ```
+### ROCm verification
+To verify that ROCm works correctly:
+```bash
+/opt/rocm/bin/rocminfo
+```
 
-3. Rebase to the signed image:
+### Kernel module verification
+To verify that the v4l2loopback module is loaded:
+```bash
+lsmod | grep v4l2loopback
+```
 
-   ```bash
-   rpm-ostree rebase ostree-image-signed:docker://ghcr.io/btekv4/bazzite-gnome-rocm:latest
-   ```
+To verify the v4l2loopback device:
+```bash
+ls -l /dev/video*
+```
 
-4. Reboot again to finalize the installation:
+## Specific Problem Solved
 
-   ```bash
-   systemctl reboot
-   ```
+This project solves the compatibility issue between ROCm and newer Linux kernel versions. ROCm requires specific kernel versions (in this case, 6.13.7) to work properly on AMD hardware, while Bazzite by default uses newer kernels.
 
-The `latest` tag always points to the most recent build, but the Fedora version will remain fixed based on what is declared in the `recipe.yml` file.
+Additionally, it keeps the `v4l2loopback` module (for virtual webcam creation) working, which would otherwise stop functioning with the kernel downgrade.
 
-## ISO Creation
-
-If you are building this on Fedora Atomic, you can generate an offline ISO following [these instructions](https://blue-build.org/docs/building-isos/).  
-Note: Due to size constraints, ISOs cannot be freely hosted on GitHub; alternative hosting must be used for public distribution.
-
-## Verification
-
-This image is signed using [Sigstore's cosign](https://docs.sigstore.dev/cosign/overview).  
-To verify the authenticity of the image:
-
-1. Download the `cosign.pub` file from this repository.
-2. Run:
-
-   ```bash
-   cosign verify --key cosign.pub ghcr.io/btekv4/bazzite-gnome-rocm
-   ```
-
-This ensures the build has not been tampered with.
-
-## Changes for ROCm Support
+## Changes Made
 
 To enable full ROCm compatibility, the following adjustments were made:
 
@@ -91,19 +100,29 @@ Several stock kernel modules and third-party drivers were removed to avoid confl
 
 A custom Bazzite kernel and its modules were installed to replace the removed stock Fedora components:
 
-- [`kernel-6.13.7-108.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- [`kernel-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- [`kernel-core-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- [`kernel-modules-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- [`kernel-modules-core-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- [`kernel-modules-extra-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- [`kernel-devel-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
 
 This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 
+### Additional Changes
+
+- Set up v4l2loopback compilation during image build
+- Translated all comments in scripts and configuration files to English
+
+## ISO Creation
+
+If you are building this on Fedora Atomic, you can generate an offline ISO following [these instructions](https://blue-build.org/docs/building-isos/).  
+Note: Due to size constraints, ISOs cannot be freely hosted on GitHub; alternative hosting must be used for public distribution.
+
 ## Credits
 
-This project is maintained by **BTekV4**.  
-Special thanks to the [Bazzite OS](https://github.com/ublue-os/bazzite) team for their original image and to the contributors who help make this project possible.
+This project is based on [Bazzite OS](https://github.com/ublue-os/bazzite).  
+Special thanks to the Bazzite team for their original image.
 
 ---
 

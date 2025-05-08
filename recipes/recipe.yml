@@ -8,7 +8,7 @@ image-version: latest
 
 modules:
 
-  # Rimozione dei moduli non necessari per ROCm
+  # Remove unnecessary modules for ROCm
   - type: rpm-ostree
     remove:
       - bmi260
@@ -27,7 +27,6 @@ modules:
       - gcadapter_oc
       - kmod-openrazer
       - openrazer-kmod-common
-      - kmod-v4l2loopback
       - kmod-wl
       - kvmfr
       - kmod-kvmfr
@@ -35,11 +34,8 @@ modules:
       - kmod-nct6687d
       - ryzen-smu
       - kmod-ryzen-smu
-      - v4l2loopback
-      - kmod-vhba
       - vhba
-      - xone-kmod-common
-      - kmod-xone
+      - kmod-vhba
       - zenergy
       - kmod-zenergy
       - kernel-core
@@ -48,15 +44,29 @@ modules:
       - kernel-modules-extra
       - kernel-devel
       - kernel
+      - kmod-xone
+      - kmod-v4l2loopback
+      - v4l2loopback
+      - xone-kmod-common
 
+  # Install downgraded kernel for ROCm support
   - type: rpm-ostree
     install:
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-devel-6.13.7-108.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-6.13.7-108.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-core-6.13.7-108.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-6.13.7-108.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-core-6.13.7-108.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-108.1/kernel-modules-extra-6.13.7-108.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-devel-matched-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-devel-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-core-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-core-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-extra-6.13.7-107.bazzite.fc42.x86_64.rpm
       - rpm-build
       - rpmdevtools
+      - gcc
+      - make
+      - git
+
+  # Script to compile and install v4l2loopback during build
+  - type: script
+    scripts:
+      - build_modules.sh
 
