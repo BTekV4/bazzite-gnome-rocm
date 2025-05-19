@@ -120,6 +120,10 @@ This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 If you are building this on Fedora Atomic, you can generate an offline ISO following [these instructions](https://blue-build.org/docs/building-isos/).  
 Note: Due to size constraints, ISOs cannot be freely hosted on GitHub; alternative hosting must be used for public distribution.
 
+```bash
+sudo bluebuild generate-iso --iso-name bazzite-gnome-rocm.iso image ghcr.io/btekv4/bazzite-gnome-rocm:latest
+```
+
 ## Credits
 
 This project is based on [Bazzite OS](https://github.com/ublue-os/bazzite).  
