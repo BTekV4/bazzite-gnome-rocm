@@ -53,7 +53,7 @@ To enable full ROCm compatibility, the following adjustments were made:
 
 ### Removed Packages
 
-Several stock kernel modules and third-party drivers were removed to avoid conflicts with ROCm, including:
+Several stock kernel modules and third-party drivers were removed to simplify the image:
 
 - **Kernel components**:
   - `kernel`
@@ -82,7 +82,7 @@ Several stock kernel modules and third-party drivers were removed to avoid confl
 
 ### Installed Packages
 
-A custom Bazzite kernel and its modules were installed to replace the removed stock Fedora components:
+A custom Bazzite kernel and its modules were installed to replace the removed stock Bazzite components:
 
 - [`kernel-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
 - [`kernel-core-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
