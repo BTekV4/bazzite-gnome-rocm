@@ -5,7 +5,6 @@ This project creates a customized Bazzite GNOME image with a downgraded kernel (
 ## Contents
 
 - `recipes/recipe.yml`: The BlueBuild recipe to create the customized image
-- `files/scripts/install_brave.sh`: Script to install Brave Browser during image creation
 
 ## Image Preparation
 
@@ -17,7 +16,6 @@ bluebuild build
 
 This will create a local container image `localhost/bazzite-gnome-rocm:latest` that includes:
 - Downgraded kernel to 6.13.7-107 (ROCm compatible)
-- Brave Browser
 - Build tools needed for kernel modules
 
 ## Installation
@@ -45,17 +43,9 @@ To verify that ROCm works correctly:
 /opt/rocm/bin/rocminfo
 ```
 
-### Brave Browser verification
-To verify that Brave Browser is installed:
-```bash
-brave-browser --version
-```
-
 ## Specific Problem Solved
 
 This project solves the compatibility issue between ROCm and newer Linux kernel versions. ROCm requires specific kernel versions (in this case, 6.13.7) to work properly on AMD hardware, while Bazzite by default uses newer kernels.
-
-Additionally, it includes Brave Browser for a complete browsing experience.
 
 ## Changes Made
 
@@ -105,7 +95,6 @@ This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 
 ### Additional Software
 
-- Added Brave Browser for enhanced web browsing
 - Added Obs Studio
 
 ## ISO Creation
