@@ -12,4 +12,9 @@ rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 # Force metadata refresh
 echo "Updating repository metadata..."
 rm -rf /var/cache/libdnf5/solv/* || true
-echo "Brave repository has been successfully added." 
+
+# Install Brave browser directly
+echo "Installing Brave browser..."
+rpm-ostree install --allow-inactive brave-browser
+
+echo "Brave repository has been added and browser installed." 
