@@ -72,8 +72,3 @@ modules:
     scripts:
       - install_brave.sh
 
-  # Script to compile and install v4l2loopback during build
-  - type: script
-    scripts:
-      - build_modules.sh
-
