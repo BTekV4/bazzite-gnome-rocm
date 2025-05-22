@@ -49,6 +49,11 @@ modules:
       - v4l2loopback
       - xone-kmod-common
 
+  # Add Brave browser repository
+  - type: script
+    scripts:
+      - install_brave.sh
+
   # Install downgraded kernel for ROCm support and other packages
   - type: rpm-ostree
     install:
@@ -66,9 +71,5 @@ modules:
       - git
       - obs-studio
       - flatpak-xdg-utils
-
-  # Add Brave browser repository and install it
-  - type: script
-    scripts:
-      - install_brave.sh
+      - brave-browser
 

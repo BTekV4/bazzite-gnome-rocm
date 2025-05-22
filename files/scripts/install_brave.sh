@@ -1,28 +1,15 @@
 #!/bin/bash
 set -euo pipefail
 
-# Aggiungi il repository Brave
-echo "Aggiunta del repository Brave..."
+# Add Brave repository
+echo "Adding Brave repository..."
 curl -fsSLo /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
-# Verifica che il repository sia stato aggiunto correttamente
-echo "Contenuto del repository Brave:"
-cat /etc/yum.repos.d/brave-browser.repo
+# Import GPG key 
+echo "Importing Brave GPG key..."
+rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
-# Aggiorna i metadati dei repository
-echo "Aggiornamento dei metadati dei repository..."
-rpm-ostree refresh-md
-
-# Elenca i pacchetti disponibili nel repository Brave
-echo "Pacchetti disponibili nel repository Brave:"
-rpm-ostree search brave-browser
-
-# Installa Brave Browser
-echo "Installazione di Brave Browser..."
-rpm-ostree install -y brave-browser
-
-# Verifica che il pacchetto sia stato installato
-echo "Verifica dell'installazione:"
-rpm -qa | grep brave
-
-echo "Brave Browser installato con successo!" 
+# Force metadata refresh
+echo "Updating repository metadata..."
+rm -rf /var/cache/libdnf5/solv/* || true
+echo "Brave repository has been successfully added." 
