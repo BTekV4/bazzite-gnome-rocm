@@ -47,6 +47,7 @@ modules:
       - kmod-xone
       - kmod-v4l2loopback
       - v4l2loopback
+      - akmod-v4l2loopback
       - xone-kmod-common
 
   # Install downgraded kernel for ROCm support and other packages
