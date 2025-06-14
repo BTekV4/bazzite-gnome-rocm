@@ -95,7 +95,7 @@ This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 
 ### Additional Software
 
-- Added Obs Studio
+- Added Void-Editor https://voideditor.com/
 
 ## ISO Creation
 
