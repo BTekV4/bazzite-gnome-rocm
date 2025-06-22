@@ -11,8 +11,8 @@ modules:
   # Remove unnecessary modules for ROCm
   - type: rpm-ostree
     remove:
-      - akmod-v4l2loopback
       - ayn-platform
+      - akmod-xone
       - ayaneo-platform
       - bmi260
       - broadcom-wl
@@ -49,7 +49,7 @@ modules:
       - v4l2loopback
       - xone-kmod-common
       - zenergy
-
+      
   # Install downgraded kernel for ROCm support and other packages
   - type: rpm-ostree
     install:
