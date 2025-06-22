@@ -11,46 +11,44 @@ modules:
   # Remove unnecessary modules for ROCm
   - type: rpm-ostree
     remove:
-      - bmi260
-      - kmod-bmi260
-      - broadcom-wl
-      - gpd-fan
-      - kmod-gpd-fan
-      - kernel-devel-matched
-      - kmod-ayaneo-platform
-      - ayaneo-platform
-      - kmod-ayn-platform
+      - akmod-v4l2loopback
       - ayn-platform
-      - kmod-framework-laptop
+      - ayaneo-platform
+      - bmi260
+      - broadcom-wl
       - framework-laptop-kmod-common
-      - kmod-gcadapter_oc
       - gcadapter_oc
-      - kmod-openrazer
-      - openrazer-kmod-common
-      - kmod-wl
-      - kvmfr
-      - kmod-kvmfr
-      - nct6687d
-      - kmod-nct6687d
-      - ryzen-smu
-      - kmod-ryzen-smu
-      - vhba
-      - kmod-vhba
-      - zenergy
-      - kmod-zenergy
-      - kernel-core
-      - kernel-modules-core
-      - kernel-modules
-      - kernel-modules-extra
-      - kernel-devel
+      - gpd-fan
       - kernel
-      - kmod-xone
+      - kernel-core
+      - kernel-devel
+      - kernel-devel-matched
+      - kernel-modules
+      - kernel-modules-core
+      - kernel-modules-extra
+      - kmod-ayaneo-platform
+      - kmod-ayn-platform
+      - kmod-bmi260
+      - kmod-framework-laptop
+      - kmod-gcadapter_oc
+      - kmod-gpd-fan
+      - kmod-kvmfr
+      - kmod-nct6687d
+      - kmod-openrazer
+      - kmod-ryzen-smu
       - kmod-v4l2loopback
+      - kmod-vhba
+      - kmod-wl
+      - kmod-xone
+      - kmod-zenergy
+      - kvmfr
+      - nct6687d
+      - openrazer-kmod-common
+      - ryzen-smu
+      - vhba
       - v4l2loopback
-      - akmod-v4l2loopback
       - xone-kmod-common
-      - akmod-v4l2loopback
-
+      - zenergy
 
   # Install downgraded kernel for ROCm support and other packages
   - type: rpm-ostree
