@@ -49,6 +49,8 @@ modules:
       - v4l2loopback
       - akmod-v4l2loopback
       - xone-kmod-common
+      - akmod-v4l2loopback
+
 
   # Install downgraded kernel for ROCm support and other packages
   - type: rpm-ostree
