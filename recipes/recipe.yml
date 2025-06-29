@@ -53,13 +53,13 @@ modules:
   # Install downgraded kernel for ROCm support and other packages
   - type: rpm-ostree
     install:
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-devel-matched-6.15.3-102.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-devel-6.15.3-102.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-6.15.3-102.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-core-6.15.3-102.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-modules-6.15.3-102.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-modules-core-6.15.3-102.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.15.3-102/kernel-modules-extra-6.15.3-102.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-devel-matched-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-devel-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-core-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-core-6.13.7-107.bazzite.fc42.x86_64.rpm
+      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-extra-6.13.7-107.bazzite.fc42.x86_64.rpm
       - https://github.com/voideditor/binaries/releases/download/1.99.30044/void-1.99.30044-el9.x86_64.rpm
       - rpm-build
       - rpmdevtools
