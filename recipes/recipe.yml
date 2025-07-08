@@ -12,7 +12,6 @@ modules:
   - type: rpm-ostree
     remove:
       - ayn-platform
-      - akmod-xone
       - ayaneo-platform
       - bmi260
       - broadcom-wl
