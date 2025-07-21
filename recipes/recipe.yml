@@ -46,6 +46,7 @@ modules:
       - ryzen-smu
       - vhba
       - v4l2loopback
+      - akmod-v4l2loopback
       - xone-kmod-common
       - zenergy
       
