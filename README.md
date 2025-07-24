@@ -93,10 +93,6 @@ A custom Bazzite kernel and its modules were installed to replace the removed st
 
 This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 
-### Additional Software
-
-- Added Void-Editor https://voideditor.com/
-
 ## ISO Creation
 
 If you are building this on Fedora Atomic, you can generate an offline ISO following [these instructions](https://blue-build.org/docs/building-isos/).  
