@@ -61,6 +61,7 @@ Several stock kernel modules and third-party drivers were removed to simplify th
   - `kernel-modules`
   - `kernel-modules-extra`
   - `kernel-devel`
+  - `kernel-devel-matched`
   - `kernel-modules-core`
 - **Device modules**: 
   - `bmi260`, `kmod-bmi260`
@@ -79,6 +80,8 @@ Several stock kernel modules and third-party drivers were removed to simplify th
   - `kmod-vhba`, `vhba`
   - `kmod-xone`, `xone-kmod-common`
   - `kmod-zenergy`, `zenergy`
+  - `kmod-evdi`
+  - `displaylink`
 
 ### Installed Packages
 
