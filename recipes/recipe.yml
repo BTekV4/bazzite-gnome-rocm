@@ -48,7 +48,6 @@ modules:
       - v4l2loopback
       - xone-kmod-common
       - zenergy
-      - kmod-evdi
       
   # Install downgraded kernel for ROCm support and other packages
   - type: rpm-ostree
