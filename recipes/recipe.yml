@@ -15,6 +15,7 @@ modules:
       - ayaneo-platform
       - bmi260
       - broadcom-wl
+      - displaylink
       - framework-laptop-kmod-common
       - gcadapter_oc
       - gpd-fan
@@ -28,6 +29,7 @@ modules:
       - kmod-ayaneo-platform
       - kmod-ayn-platform
       - kmod-bmi260
+      - kmod-evdi
       - kmod-framework-laptop
       - kmod-gcadapter_oc
       - kmod-gpd-fan
