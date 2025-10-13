@@ -28,7 +28,6 @@ modules:
       - kmod-ayaneo-platform
       - kmod-ayn-platform
       - kmod-bmi260
-      - kmod-evdi
       - kmod-framework-laptop
       - kmod-gcadapter_oc
       - kmod-gpd-fan
