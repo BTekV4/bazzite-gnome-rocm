@@ -11,7 +11,6 @@ modules:
   # Remove unnecessary modules for ROCm
   - type: rpm-ostree
     remove:
-      - bmi260
       - broadcom-wl
       - framework-laptop-kmod-common
       - gcadapter_oc
