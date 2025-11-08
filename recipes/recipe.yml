@@ -12,7 +12,6 @@ modules:
   - type: rpm-ostree
     remove:
       - ayn-platform
-      - ayaneo-platform
       - bmi260
       - broadcom-wl
       - framework-laptop-kmod-common
