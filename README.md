@@ -1,6 +1,6 @@
 # Bazzite GNOME ROCm
 
-This project creates a customized Bazzite GNOME image with a downgraded kernel (6.13.7-107) to support ROCm on AMD hardware.
+This project creates a customized Bazzite GNOME image with a longterm kernel (6.12) to support ROCm on AMD hardware.
 
 ## Contents
 
@@ -15,8 +15,8 @@ bluebuild build
 ```
 
 This will create a local container image `localhost/bazzite-gnome-rocm:latest` that includes:
-- Downgraded kernel to 6.13.7-107 (ROCm compatible)
-- Build tools needed for kernel modules
+- Longterm kernel 6.12 (ROCm compatible)
+- Kernel modules from the longterm kernel repository
 
 ## Installation
 
@@ -35,7 +35,7 @@ To verify the system is using the correct kernel:
 ```bash
 uname -r
 ```
-You should see `6.13.7-107.bazzite.fc42.x86_64`.
+You should see a kernel version starting with `6.12` (longterm kernel).
 
 ### ROCm verification
 To verify that ROCm works correctly:
@@ -45,54 +45,26 @@ To verify that ROCm works correctly:
 
 ## Specific Problem Solved
 
-This project solves the compatibility issue between ROCm and newer Linux kernel versions. ROCm requires specific kernel versions (in this case, 6.13.7) to work properly on AMD hardware, while Bazzite by default uses newer kernels.
+This project solves the compatibility issue between ROCm and newer Linux kernel versions. ROCm requires specific kernel versions (in this case, 6.12 longterm) to work properly on AMD hardware, while Bazzite by default uses newer kernels.
 
 ## Changes Made
 
 To enable full ROCm compatibility, the following adjustments were made:
 
-### Removed Packages
+### Repository Configuration
 
-Several stock kernel modules and third-party drivers were removed to simplify the image:
-
-- **Kernel components**:
-  - `kernel`
-  - `kernel-core`
-  - `kernel-modules`
-  - `kernel-modules-extra`
-  - `kernel-devel`
-  - `kernel-devel-matched`
-  - `kernel-modules-core`
-- **Device modules**: 
-  - `bmi260`, `kmod-bmi260`
-  - `broadcom-wl`
-  - `gpd-fan`, `kmod-gpd-fan`
-  - `kmod-ayaneo-platform`, `ayaneo-platform`
-  - `kmod-ayn-platform`, `ayn-platform`
-  - `kmod-framework-laptop`, `framework-laptop-kmod-common`
-  - `kmod-gcadapter_oc`, `gcadapter_oc`
-  - `kmod-openrazer`, `openrazer-kmod-common`
-  - `kmod-v4l2loopback`, `v4l2loopback`
-  - `kmod-wl`
-  - `kvmfr`, `kmod-kvmfr`
-  - `nct6687d`, `kmod-nct6687d`
-  - `ryzen-smu`, `kmod-ryzen-smu`
-  - `kmod-vhba`, `vhba`
-  - `kmod-xone`, `xone-kmod-common`
-  - `kmod-zenergy`, `zenergy`
-  - `kmod-evdi`
-  - `displaylink`
+A COPR repository is added to provide the longterm kernel:
+- `https://copr.fedorainfracloud.org/coprs/kwizart/kernel-longterm-6.12/repo/fedora-43/kwizart-kernel-longterm-6.12-fedora-43.repo`
 
 ### Installed Packages
 
-A custom Bazzite kernel and its modules were installed to replace the removed stock Bazzite components:
+The longterm kernel and its modules are installed to replace the default kernel:
 
-- [`kernel-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-core-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-modules-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-modules-core-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-modules-extra-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
-- [`kernel-devel-6.13.7-107.bazzite.fc42.x86_64.rpm`](https://github.com/bazzite-org/kernel-bazzite/releases)
+- `kernel-longterm`
+- `kernel-longterm-core`
+- `kernel-longterm-devel`
+- `kernel-longterm-modules`
+- `kernel-longterm-modules-extra`
 
 This ensures maximum compatibility with AMD GPUs using the ROCm stack.
 
