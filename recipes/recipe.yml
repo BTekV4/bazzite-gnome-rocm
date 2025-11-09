@@ -7,52 +7,14 @@ base-image: ghcr.io/ublue-os/bazzite-gnome
 image-version: latest
 
 modules:
-
-  # Remove unnecessary modules for ROCm
   - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/kwizart/kernel-longterm-6.12/repo/fedora-43/kwizart-kernel-longterm-6.12-fedora-43.repo
     remove:
-      - framework-laptop-kmod-common
-      - gcadapter_oc
-      - gpd-fan
-      - kernel
-      - kernel-core
-      - kernel-devel
+      - kernel-modules-akmods
       - kernel-devel-matched
-      - kernel-modules
-      - kernel-modules-core
-      - kernel-modules-extra
-      - kmod-ayaneo-platform
-      - kmod-ayn-platform
-      - kmod-bmi260
-      - kmod-framework-laptop
-      - kmod-gcadapter_oc
-      - kmod-gpd-fan
-      - kmod-kvmfr
-      - kmod-nct6687d
-      - kmod-openrazer
-      - kmod-ryzen-smu
-      - kmod-v4l2loopback
-      - kmod-vhba
-      - kmod-wl
-      - kmod-xone
-      - kmod-zenergy
-      - kvmfr
-      - nct6687d
-      - openrazer-kmod-common
-      - ryzen-smu
-      - vhba
-      - v4l2loopback
-      - xone-kmod-common
-      - zenergy
-      
-  # Install downgraded kernel for ROCm support and other packages
-  - type: rpm-ostree
     install:
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-devel-matched-6.13.7-107.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-devel-6.13.7-107.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-6.13.7-107.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-core-6.13.7-107.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-6.13.7-107.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-core-6.13.7-107.bazzite.fc42.x86_64.rpm
-      - https://github.com/bazzite-org/kernel-bazzite/releases/download/6.13.7-107/kernel-modules-extra-6.13.7-107.bazzite.fc42.x86_64.rpm
-
+      - kernel-longterm
+      - kernel-longterm-core
+      - kernel-longterm-modules
+      - kernel-longterm-modules-extra
