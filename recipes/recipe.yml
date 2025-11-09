@@ -1,20 +1,19 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: bazzite-gnome-rocm
-description: This is my personal OS image with kernel downgraded for ROCm support.
+description: This is my personal OS image with kernel 6.12 LTS for ROCm support.
 
 base-image: ghcr.io/ublue-os/bazzite-gnome
 image-version: latest
 
 modules:
+  
   - type: rpm-ostree
     repos:
       - https://copr.fedorainfracloud.org/coprs/kwizart/kernel-longterm-6.12/repo/fedora-43/kwizart-kernel-longterm-6.12-fedora-43.repo
-    remove:
-      - kernel-modules-akmods
-      - kernel-devel-matched
+
     install:
       - kernel-longterm
       - kernel-longterm-core
+      - kernel-longterm-devel
       - kernel-longterm-modules
       - kernel-longterm-modules-extra
