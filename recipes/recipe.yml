@@ -17,3 +17,4 @@ modules:
       - kernel-longterm-devel
       - kernel-longterm-modules
       - kernel-longterm-modules-extra
+      - rocminfo
