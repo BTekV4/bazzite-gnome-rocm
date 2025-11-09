@@ -40,7 +40,7 @@ You should see a kernel version starting with `6.12` (longterm kernel).
 ### ROCm verification
 To verify that ROCm works correctly:
 ```bash
-/opt/rocm/bin/rocminfo
+rocminfo
 ```
 
 ## Specific Problem Solved
